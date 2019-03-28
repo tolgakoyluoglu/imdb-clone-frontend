@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const register = newUser => {
     return axios
-        .post('http://localhost:8002/users/register', {
+        .post(`${process.env.REACT_APP_API_PORT}/users/register`, {
             name: newUser.name,
             email: newUser.email,
             password: newUser.password
@@ -16,7 +16,7 @@ export const register = newUser => {
 
 export const login = user => {
     return axios
-        .post('http://localhost:8002/users/login', {
+        .post(`${process.env.REACT_APP_API_PORT}/users/login`, {
             email: user.email,
             password: user.password
         })
@@ -25,6 +25,19 @@ export const login = user => {
             return res.data
         })
         .catch(err => {
+            console.log(err)
+        })
+}
+
+export const update = updateUser => {
+    return axios
+        .put(`${process.env.REACT_APP_API_PORT}/users/update/${updateUser.email}/`, {
+            name: updateUser.name
+        })
+        .then(res => {
+            console.log(res)
+            console.log('Name is updated')
+        }).catch(err => {
             console.log(err)
         })
 }

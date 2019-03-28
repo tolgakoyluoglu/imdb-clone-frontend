@@ -30,16 +30,13 @@ export default class Register extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="sticky">
                 <form noValidate onSubmit={this.onSubmit}>
-                    <h1>Register</h1>
-                    <label>Name</label>
-                    <input type="text" name="name" placeholder="Name.." value={this.state.name} onChange={this.onChange}></input>
-                    <label>Email</label>
+                    <h5>Register</h5>
+                    <input type="email" name="name" placeholder="Name.." value={this.state.name} onChange={this.onChange}></input>
                     <input type="email" name="email" placeholder="Email.." value={this.state.email} onChange={this.onChange}></input>
-                    <label>Password</label>
                     <input type="password" name="password" placeholder="Password.." value={this.state.password} onChange={this.onChange}></input>
-                    <button>Submit</button>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                 </form>
             </div>
         )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import '../navbar/Navbar.css'
 
 class Navbar extends Component {
     logout(e) {
@@ -32,25 +33,26 @@ class Navbar extends Component {
                     </Link>
                 </li>
                 <li>
-                    <button href="" onClick={this.logout.bind(this)}>
+                    <a href="/" onClick={this.logout.bind(this)}>
                         Logout
-                    </button>
+                    </a>
                 </li>
             </ul>
         )
         return (
-            <nav>
-                <div>
-                    <ul>
-                        <li>
-                            <Link to="/">
-                                Home
-                            </Link>
-                        </li>
-                    </ul>
-                    {localStorage.usertoken ? loggedIn : notLoggedIn}
-                </div>
-            </nav>
+            <header>
+                <nav className="navbar">
+                    <div class="nav-wrapper">
+                        <a href="/" class="brand-logo">The Movie Base</a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><Link to="/">Home</Link> </li>
+                            <li><Link to="/movies">Movies</Link> </li>
+                            <li>{localStorage.usertoken ? loggedIn : notLoggedIn}</li>
+
+                        </ul>
+                    </div>
+                </nav>
+            </header>
         )
     }
 }

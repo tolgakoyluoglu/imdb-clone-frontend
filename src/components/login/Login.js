@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { login } from '../functions/UserFunctions'
+import '../login/Login.css'
 
 export default class Login extends Component {
     state = {
@@ -30,15 +31,12 @@ export default class Login extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="sticky">
                 <form noValidate onSubmit={this.onSubmit}>
-                    <h1>Sign in</h1>
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.onChange}></input>
-
-                    <label>Password</label>
-                    <input type="text" name="password" placeholder="password" value={this.state.password} onChange={this.onChange}></input>
-                    <button>Submit</button>
+                    <h5>Sign in</h5>
+                    <input type="email" name="email" placeholder="Email.." value={this.state.email} onChange={this.onChange}></input>
+                    <input type="password" name="password" placeholder="Password.." value={this.state.password} onChange={this.onChange}></input>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                 </form>
             </div>
         )

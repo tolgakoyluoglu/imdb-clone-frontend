@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import '../home/Home.css'
 export default class Home extends Component {
   state = {
     movies: [],
@@ -30,21 +30,29 @@ export default class Home extends Component {
     const movies = this.state.movies;
     const movieList = movies.map(movie => {
       return (
-        <div key={movie.id}>
+
+        <div class="col s12 m6">
           <Link to={{ pathname: "/movie/" + movie.id }}>
-            <p>{movie.title}</p>
+            <div class="card">
+              <div class="card-image">
+                <img src={"http://image.tmdb.org/t/p/w185" + movie.poster_path} alt="Not Found"></img>
+              </div>
+            </div>
           </Link>
         </div>
+
       );
     });
     return (
-      <div>
-        <h1>Movies</h1>
+      <div className="sticky">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" name="search" />
-          <button>Search</button>
+          <input type="text" autoComplete="off" name="search" />
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          </button>
         </form>
-        {movieList}
+        <div className="homeContainer">
+          {movieList}
+        </div>
       </div>
     );
   }

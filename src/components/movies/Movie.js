@@ -22,7 +22,7 @@ export default class Movie extends Component {
   render() {
     return (
       <div>
-        <h1>Detals</h1>
+        <h1>Details</h1>
         <p>{this.state.movie.title}</p>
       </div>
     );

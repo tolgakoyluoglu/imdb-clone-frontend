@@ -1,0 +1,27 @@
+.banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(banner2.jpg);
+    height: 600px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    box-shadow: 0 0 5px 2px #282a2d;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+.latest {
+    display: flex;
+}
+.rated {
+    display: flex;
+}
+.featured {
+    width: 80%;
+    margin: auto;
+    margin-top: 70px;
+    margin-bottom: 70px
+}
+.featured h4 {
+    font-size: 35px;
+    margin-left: 10px;
+}
