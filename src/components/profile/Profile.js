@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import { update } from '../functions/UserFunctions'
+import '../profile/Profile.css'
 
 export default class Profile extends Component {
     state = {
@@ -42,13 +43,18 @@ export default class Profile extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Welcome {this.state.name}</h1>
-                <form noValidate onSubmit={this.onSubmit}>
-                    <label>Change Name</label>
-                    <input type="text" name="changeName" value={this.state.changeName} onChange={this.onChange}></input>
-                    <button type="submit">Click</button>
-                </form>
+            <div className="sticky">
+                <div className="form">
+                    <h5>Welcome {this.state.name}!</h5>
+                    <form className="formProfile" noValidate onSubmit={this.onSubmit}>
+                        <label>Change Name: </label>
+                        <input type="text" className="inputName" name="changeName" value={this.state.changeName} onChange={this.onChange}></input>
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                    </form>
+                </div>
+                <div className="watchList">
+                    <h5>Watchlist: </h5>
+                </div>
             </div>
         )
     }

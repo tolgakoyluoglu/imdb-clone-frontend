@@ -43,7 +43,7 @@ class Navbar extends Component {
             <header>
                 <nav className="navbar">
                     <div class="nav-wrapper">
-                        <a href="/" class="brand-logo">The Movie Base</a>
+                        <a href="/" class="brand-logo">IMDB Clone</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><Link to="/">Home</Link> </li>
                             <li><Link to="/movies">Movies</Link> </li>

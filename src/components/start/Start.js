@@ -8,12 +8,14 @@ export default class Start extends Component {
     state = {
         latest: [],
         topMovie: [],
-        popular: []
+        upcoming: [],
+        isLoading: true,
     }
 
     componentDidMount() {
         this.getLatest()
         this.getTop()
+        this.getUpcoming()
     }
 
     getLatest = () => {
@@ -23,7 +25,6 @@ export default class Start extends Component {
                 this.setState({
                     latest: res.data.results
                 });
-                console.log(res)
             });
     };
     getTop = () => {
@@ -31,9 +32,19 @@ export default class Start extends Component {
             .get(`${process.env.REACT_APP_API_PORT}/search/top`)
             .then(res => {
                 this.setState({
-                    topMovie: res.data.results
+                    topMovie: res.data.results,
+                    isLoading: false
                 });
-                console.log(res)
+            });
+    };
+    getUpcoming = () => {
+        axios
+            .get(`${process.env.REACT_APP_API_PORT}/search/upcoming`)
+            .then(res => {
+                this.setState({
+                    upcoming: res.data.results
+                });
+                console.log(this.state)
             });
     };
 
@@ -45,7 +56,6 @@ export default class Start extends Component {
         for (let i = 0; i < 5; i++) {
             if (topRated[i])
                 topFive.push(topRated[i])
-            console.log(topFive)
         }
 
         let showTop;
@@ -70,18 +80,17 @@ export default class Start extends Component {
         for (let y = 0; y < 5; y++) {
             if (latestMovies[y])
                 latestFive.push(latestMovies[y])
-            console.log(latestFive)
         }
 
         let showLatest;
 
-        showLatest = latestFive.map(dataLatest => {
+        showLatest = latestFive.map(latest => {
             return (
                 <div class="col s12 m6">
-                    <Link to={{ pathname: "/movie/" + dataLatest.id }}>
+                    <Link to={{ pathname: "/movie/" + latest.id }}>
                         <div class="card">
                             <div class="card-image">
-                                <img src={"http://image.tmdb.org/t/p/w185" + dataLatest.poster_path} alt="Not Found"></img>
+                                <img src={"http://image.tmdb.org/t/p/w185" + latest.poster_path} alt="Not Found"></img>
                             </div>
                         </div>
                     </Link>
@@ -89,21 +98,65 @@ export default class Start extends Component {
             )
         })
 
-        return (
-            <div className="sticky">
-                <div className="banner">
+        const upcomingMovies = this.state.upcoming
+        let upcomingFive = []
+
+        for (let x = 0; x < 5; x++) {
+            if (upcomingMovies[x])
+                upcomingFive.push(upcomingMovies[x])
+        }
+
+        let showUpcoming;
+
+        showUpcoming = upcomingFive.map(upcoming => {
+            return (
+                <div class="col s12 m6">
+                    <Link to={{ pathname: "/movie/" + upcoming.id }}>
+                        <div class="card">
+                            <div class="card-image">
+                                <img src={"http://image.tmdb.org/t/p/w185" + upcoming.poster_path} alt="Not Found"></img>
+                            </div>
+                        </div>
+                    </Link>
                 </div>
-                <div className="featured">
-                    <h4>Latest</h4>
-                    <div className="latest">
-                        {showLatest}
-                    </div>
-                    <h4>Top Rated</h4>
-                    <div className="rated">
-                        {showTop}
+            )
+        })
+        if (this.state.isLoading) {
+            return (
+                <div className="sticky">
+                    <div className="containerLoader">
+                        <div className="loading"></div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+
+            return (
+                <div className="sticky">
+                    <div className="banner">
+                        <div className="bannertext">
+                            <div className="text">
+                                <h5>Captain Marvel (2019)</h5>
+                                <p>The story follows Carol Danvers as she becomes one of the universe’s most powerful heroes when Earth is caught in the middle of a galactic war between two alien races. Set in the 1990s, Captain Marvel is an all-new adventure from a previously unseen period in the history of the Marvel Cinematic Universe.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="featured">
+                        <h4>Latest</h4>
+                        <div className="latest">
+                            {showLatest}
+                        </div>
+                        <h4>Top Rated</h4>
+                        <div className="rated">
+                            {showTop}
+                        </div>
+                        <h4>Upcoming</h4>
+                        <div className="rated">
+                            {showUpcoming}
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 }

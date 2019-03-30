@@ -26,15 +26,17 @@ export default class Login extends Component {
         login(user).then(res => {
             if (res) {
                 this.props.history.push('/profile')
+            } else {
+                alert('Invalid Credentials')
             }
         })
     }
     render() {
         return (
             <div className="sticky">
-                <form noValidate onSubmit={this.onSubmit}>
+                <form noValidate onSubmit={this.onSubmit} required>
                     <h5>Sign in</h5>
-                    <input type="email" name="email" placeholder="Email.." value={this.state.email} onChange={this.onChange}></input>
+                    <input type="email" name="email" placeholder="Email.." required value={this.state.email} onChange={this.onChange}></input>
                     <input type="password" name="password" placeholder="Password.." value={this.state.password} onChange={this.onChange}></input>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                 </form>

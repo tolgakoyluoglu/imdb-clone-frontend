@@ -3,9 +3,9 @@ import { register } from '../functions/UserFunctions'
 
 export default class Register extends Component {
     state = {
-        name: '',
-        email: '',
-        password: ''
+        name: null,
+        email: null,
+        password: null
     }
 
     onChange = this.onChange.bind(this)
@@ -23,19 +23,26 @@ export default class Register extends Component {
             email: this.state.email,
             password: this.state.password
         }
-
-        register(newUser).then(res => {
-            this.props.history.push('/login')
-        })
+        if (this.state.email !== null || this.state.name !== null || this.state.password !== null) {
+            register(newUser).then(res => {
+                if (res) {
+                    this.props.history.push('/profile')
+                } else {
+                    alert('Email already exist')
+                }
+            })
+        } else {
+            alert('Please enter all fields')
+        }
     }
     render() {
         return (
             <div className="sticky">
-                <form noValidate onSubmit={this.onSubmit}>
+                <form noValidate onSubmit={this.onSubmit} required>
                     <h5>Register</h5>
-                    <input type="email" name="name" placeholder="Name.." value={this.state.name} onChange={this.onChange}></input>
-                    <input type="email" name="email" placeholder="Email.." value={this.state.email} onChange={this.onChange}></input>
-                    <input type="password" name="password" placeholder="Password.." value={this.state.password} onChange={this.onChange}></input>
+                    <input type="email" name="name" placeholder="Name.." required value={this.state.name} onChange={this.onChange}></input>
+                    <input type="email" name="email" placeholder="Email.." required value={this.state.email} onChange={this.onChange}></input>
+                    <input type="password" name="password" placeholder="Password.." required value={this.state.password} onChange={this.onChange}></input>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                 </form>
             </div>

@@ -27,7 +27,7 @@ form {
     flex-wrap: wrap;
 }
 .sticky {
-    min-height: calc(80vh - 30px);
+    min-height: calc(90vh - 30px);
 }
 
 input[type=text]:focus{

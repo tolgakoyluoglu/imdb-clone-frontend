@@ -1,0 +1,29 @@
+.formProfile {
+    width: 50%;
+}
+
+.formProfile input[type=text]:not(.browser-default) {
+    width: 40%;
+    font-size: 20px;
+}
+
+.formProfile input[type=text]:focus{
+    background-color: #fff;
+  }
+
+label {
+    font-size: 20px;
+    margin-right: 10px;
+}
+.form {
+    padding-top: 30px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.watchList {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}

@@ -8,8 +8,14 @@ export const register = newUser => {
             password: newUser.password
         })
         .then(res => {
-            console.log('User is registered')
-        }).catch(err => {
+            if (res.data.token) {
+                localStorage.setItem('usertoken', res.data.token)
+                return res.data
+            } else {
+                console.log('Invalid credentials')
+            }
+        })
+        .catch(err => {
             console.log(err)
         })
 }
@@ -21,8 +27,12 @@ export const login = user => {
             password: user.password
         })
         .then(res => {
-            localStorage.setItem('usertoken', res.data)
-            return res.data
+            if (res.data.token) {
+                localStorage.setItem('usertoken', res.data.token)
+                return res.data
+            } else {
+                console.log('Invalid credentials')
+            }
         })
         .catch(err => {
             console.log(err)
