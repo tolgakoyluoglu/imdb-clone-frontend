@@ -53,13 +53,14 @@ export default class Movie extends Component {
   //Save movie to watchlist
   saveToWatchlist = () => {
     let model = {
-      id: localStorage.getItem('id'),
-      movieId: this.state.movie.id,
+      user: localStorage.getItem('id'),
+      //user: this.state.movie.id,
       title: this.state.movie.title,
-      image: this.state.movie.poster_path,
     }
-
-    axios.post(`${process.env.REACT_APP_API_PORT}`)
+    axios.post(`${process.env.REACT_APP_API_PORT}/watchlist/add`, {
+      user: localStorage.getItem('id'),
+      title: this.state.movie.title
+    })
     console.log(model)
   }
 
