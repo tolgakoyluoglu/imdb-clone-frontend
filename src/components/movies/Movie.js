@@ -44,7 +44,6 @@ export default class Movie extends Component {
             this.setState({
               video: res.data.results[0],
             })
-            console.log(this.state)
           })
         )
       )

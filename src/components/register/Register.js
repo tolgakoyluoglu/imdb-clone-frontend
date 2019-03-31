@@ -3,9 +3,9 @@ import { register } from '../functions/UserFunctions'
 
 export default class Register extends Component {
     state = {
-        name: null,
-        email: null,
-        password: null
+        name: '',
+        email: '',
+        password: ''
     }
 
     onChange = this.onChange.bind(this)
@@ -25,7 +25,6 @@ export default class Register extends Component {
         }
         if (this.state.email !== null || this.state.name !== null || this.state.password !== null) {
             register(newUser).then(res => {
-                console.log(res)
                 if (res) {
                     this.props.history.push('/profile')
                 } else {
@@ -45,7 +44,7 @@ export default class Register extends Component {
                         <input type="email" name="name" placeholder="Name.." required value={this.state.name} onChange={this.onChange}></input>
                         <input type="email" name="email" placeholder="Email.." required value={this.state.email} onChange={this.onChange}></input>
                         <input type="password" name="password" placeholder="Password.." required value={this.state.password} onChange={this.onChange}></input>
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                        <button className="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                     </form>
                 </div>
             </div>

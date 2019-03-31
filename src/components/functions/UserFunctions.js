@@ -10,6 +10,8 @@ export const register = newUser => {
         .then(res => {
             if (res.data.token) {
                 localStorage.setItem('usertoken', res.data.token)
+                localStorage.setItem('email', res.data.user.email)
+                localStorage.setItem('id', res.data.user.id)
                 return res.data
             } else {
                 console.log('Invalid credentials')
@@ -43,15 +45,15 @@ export const login = user => {
         })
 }
 
-export const update = updateUser => {
-    return axios
-        .put(`${process.env.REACT_APP_API_PORT}/users/update/${updateUser.email}/`, {
-            name: updateUser.name
-        })
-        .then(res => {
-            console.log(res)
-            console.log('Name is updated')
-        }).catch(err => {
-            console.log(err)
-        })
-}
+// export const update = updateUser => {
+//     return axios
+//         .put(`${process.env.REACT_APP_API_PORT}/users/update/${updateUser.email}/`, {
+//             name: updateUser.name
+//         })
+//         .then(res => {
+//             console.log(res)
+//             console.log('Name is updated')
+//         }).catch(err => {
+//             console.log(err)
+//         })
+// }

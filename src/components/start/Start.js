@@ -44,7 +44,6 @@ export default class Start extends Component {
                 this.setState({
                     upcoming: res.data.results
                 });
-                console.log(this.state)
             });
     };
 
