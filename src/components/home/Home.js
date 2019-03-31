@@ -8,6 +8,17 @@ export default class Home extends Component {
     isLoading: true
   };
 
+  componentDidMount() {
+    axios
+      .get(`${process.env.REACT_APP_API_PORT}/search/latest`)
+      .then(res => {
+        this.setState({
+          movies: res.data.results,
+          isLoading: false
+        });
+      });
+  }
+
   getMovies = query => {
     axios
       .post(`${process.env.REACT_APP_API_PORT}/search`, {
@@ -15,12 +26,14 @@ export default class Home extends Component {
       })
       .then(res => {
         this.setState({
-          movies: res.data.results
+          movies: res.data.results,
+          isLoading: false,
         });
       });
   };
 
   handleSubmit = e => {
+    this.setState({ isLoading: true })
     e.preventDefault();
     const value = e.target.search.value;
     this.getMovies(value);
@@ -30,30 +43,40 @@ export default class Home extends Component {
     const movies = this.state.movies;
     const movieList = movies.map(movie => {
       return (
-
-        <div class="col s12 m6">
+        <div className="col s12 m6" key={movie.id}>
           <Link to={{ pathname: "/movie/" + movie.id }}>
-            <div class="card">
-              <div class="card-image">
+            <div className="card">
+              <div className="card-image">
                 <img src={"http://image.tmdb.org/t/p/w185" + movie.poster_path} alt="Not Found"></img>
               </div>
             </div>
           </Link>
-        </div>
+        </div >
 
       );
     });
-    return (
-      <div className="sticky">
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" autoComplete="off" name="search" />
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-          </button>
-        </form>
-        <div className="homeContainer">
-          {movieList}
+    if (this.state.isLoading) {
+      return (
+        <div className="sticky">
+          <div className="containerLoader">
+            <div className="loading"></div>
+          </div>
         </div>
-      </div>
-    );
+      )
+    } else {
+      return (
+        <div className="sticky">
+          <form className="homeSearch" onSubmit={this.handleSubmit}>
+            <input type="text" autoComplete="off" name="search" placeholder="Search for any movie.." />
+            <button className="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+            <div className="custom-select" display="show">
+            </div>
+          </form>
+          <div className="homeContainer">
+            {movieList}
+          </div>
+        </div>
+      );
+    }
   }
 }

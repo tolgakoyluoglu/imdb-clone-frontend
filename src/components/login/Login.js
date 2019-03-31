@@ -5,7 +5,7 @@ import '../login/Login.css'
 export default class Login extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
     }
 
     onChange = this.onChange.bind(this)
@@ -22,24 +22,27 @@ export default class Login extends Component {
             email: this.state.email,
             password: this.state.password
         }
-
-        login(user).then(res => {
-            if (res) {
+        //TODO: fix so it only redirects of credantials are true, else throw error
+        login(user).then(data => {
+            console.log(data)
+            if (data) {
                 this.props.history.push('/profile')
             } else {
-                alert('Invalid Credentials')
+                console.log('error on login')
             }
         })
     }
     render() {
         return (
             <div className="sticky">
-                <form noValidate onSubmit={this.onSubmit} required>
-                    <h5>Sign in</h5>
-                    <input type="email" name="email" placeholder="Email.." required value={this.state.email} onChange={this.onChange}></input>
-                    <input type="password" name="password" placeholder="Password.." value={this.state.password} onChange={this.onChange}></input>
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-                </form>
+                <div className="login">
+                    <form noValidate onSubmit={this.onSubmit} required>
+                        <h5>Login</h5>
+                        <input type="email" name="email" placeholder="Email.." value={this.state.email} onChange={this.onChange}></input>
+                        <input type="password" name="password" placeholder="Password.." value={this.state.password} onChange={this.onChange}></input>
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                    </form>
+                </div>
             </div>
         )
     }

@@ -3,17 +3,13 @@ import '../footer/Footer.css'
 
 export default function Footer() {
     return (
-        <footer class="page-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <a href="https://www.themoviedb.org/">Tmdb.com</a>
-                    </div>
-                </div>
+        <footer className="page-footer">
+            <div className="container">
             </div>
-            <div class="footer-copyright">
-                <div class="container">
+            <div className="footer-copyright">
+                <div className="container">
                     © 2019 The Movie Base
+                    <a className="black-text text-lighten-4 right" href="https://www.themoviedb.org/">Tmdb.com</a>
                 </div>
             </div>
         </footer>

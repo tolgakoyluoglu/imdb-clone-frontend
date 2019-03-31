@@ -15,4 +15,9 @@
 .footer-copyright {
   color: #333!important;
 }
-
+.container {
+  width: 79%;
+  padding-bottom: 12px;
+  padding-top: 8px;
+  max-width: 79%;
+}

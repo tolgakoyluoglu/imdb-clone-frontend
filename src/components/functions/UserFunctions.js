@@ -27,8 +27,12 @@ export const login = user => {
             password: user.password
         })
         .then(res => {
+            console.log(res)
             if (res.data.token) {
                 localStorage.setItem('usertoken', res.data.token)
+                localStorage.setItem('email', res.data.user.email)
+                localStorage.setItem('id', res.data.user.id)
+                console.log('User is registered and loggin in')
                 return res.data
             } else {
                 console.log('Invalid credentials')

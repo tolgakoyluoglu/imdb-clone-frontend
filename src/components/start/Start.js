@@ -23,7 +23,8 @@ export default class Start extends Component {
             .get(`${process.env.REACT_APP_API_PORT}/search/latest`)
             .then(res => {
                 this.setState({
-                    latest: res.data.results
+                    latest: res.data.results,
+                    isLoading: false
                 });
             });
     };
@@ -33,7 +34,6 @@ export default class Start extends Component {
             .then(res => {
                 this.setState({
                     topMovie: res.data.results,
-                    isLoading: false
                 });
             });
     };
@@ -62,10 +62,10 @@ export default class Start extends Component {
 
         showTop = topFive.map(top => {
             return (
-                <div class="col s12 m6">
+                <div className="col s12 m6" key={top.id}>
                     <Link to={{ pathname: "/movie/" + top.id }}>
-                        <div class="card">
-                            <div class="card-image">
+                        <div className="card">
+                            <div className="card-image">
                                 <img src={"http://image.tmdb.org/t/p/w185" + top.poster_path} alt="Not Found"></img>
                             </div>
                         </div>
@@ -86,10 +86,10 @@ export default class Start extends Component {
 
         showLatest = latestFive.map(latest => {
             return (
-                <div class="col s12 m6">
+                <div className="col s12 m6" key={latest.id}>
                     <Link to={{ pathname: "/movie/" + latest.id }}>
-                        <div class="card">
-                            <div class="card-image">
+                        <div className="card">
+                            <div className="card-image">
                                 <img src={"http://image.tmdb.org/t/p/w185" + latest.poster_path} alt="Not Found"></img>
                             </div>
                         </div>
@@ -110,10 +110,10 @@ export default class Start extends Component {
 
         showUpcoming = upcomingFive.map(upcoming => {
             return (
-                <div class="col s12 m6">
+                <div classame="col s12 m6" key={upcoming.id}>
                     <Link to={{ pathname: "/movie/" + upcoming.id }}>
-                        <div class="card">
-                            <div class="card-image">
+                        <div className="card">
+                            <div className="card-image">
                                 <img src={"http://image.tmdb.org/t/p/w185" + upcoming.poster_path} alt="Not Found"></img>
                             </div>
                         </div>

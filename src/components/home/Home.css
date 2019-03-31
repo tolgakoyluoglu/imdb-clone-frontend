@@ -5,10 +5,14 @@ input[type=text]:not(.browser-default) {
 }
 
 form {
-    padding-top: 20px;
+    padding-top: 70px;
     padding-bottom: 70px;
     width: 50%;
     margin: auto;
+}
+
+.homeContainer {
+    padding-bottom: 70px;
 }
 
 .btn {
@@ -50,4 +54,10 @@ input[type=text]:focus{
 }
 .card-content {
     padding: 10px;
+}
+
+.genres {
+    width: 40%;
+    margin: auto;
+    text-align: center;
 }

@@ -49,7 +49,7 @@ export default class Profile extends Component {
                     <form className="formProfile" noValidate onSubmit={this.onSubmit}>
                         <label>Change Name: </label>
                         <input type="text" className="inputName" name="changeName" value={this.state.changeName} onChange={this.onChange}></input>
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                        <button className="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                     </form>
                 </div>
                 <div className="watchList">

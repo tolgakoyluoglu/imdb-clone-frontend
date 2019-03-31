@@ -1,0 +1,41 @@
+.movieContainer {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    padding-top: 40px;
+}
+
+.movieText {
+    padding-left: 30px;
+    width: 45%;
+    font-size: 15px;
+    padding-top: 20px;
+}
+
+.imageContainer {
+    width: 20%;
+}
+
+.movieInfo {
+    font-size: 15px;
+    padding-left: 50px;
+    padding-top: 35px;
+}
+
+.actorContainer {
+    display: flex;
+}
+
+.videoContainer {
+    width: 80%;
+    padding-top: 30px;
+    margin: auto;
+    padding-bottom: 70px;
+}
+.videoContainer h4 {
+    padding-bottom: 30px;
+}
+iframe {
+    width: 100%;
+    height: 700px;
+}

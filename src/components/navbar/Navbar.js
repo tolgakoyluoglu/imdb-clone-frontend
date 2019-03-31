@@ -6,6 +6,8 @@ class Navbar extends Component {
     logout(e) {
         e.preventDefault()
         localStorage.removeItem('usertoken')
+        localStorage.removeItem('id')
+        localStorage.removeItem('email')
         this.props.history.push('/')
     }
 
@@ -42,9 +44,9 @@ class Navbar extends Component {
         return (
             <header>
                 <nav className="navbar">
-                    <div class="nav-wrapper">
-                        <a href="/" class="brand-logo">IMDB Clone</a>
-                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <div className="nav-wrapper">
+                        <a href="/" className="brand-logo">IMDB Clone</a>
+                        <ul id="nav-mobile" className="right hide-on-med-and-down">
                             <li><Link to="/">Home</Link> </li>
                             <li><Link to="/movies">Movies</Link> </li>
                             <li>{localStorage.usertoken ? loggedIn : notLoggedIn}</li>
