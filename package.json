@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://tolgakoyluoglu.chas.academy/tmdb/",
   "dependencies": {
     "dotenv": "^7.0.0",
     "jwt-decode": "^2.2.0",
