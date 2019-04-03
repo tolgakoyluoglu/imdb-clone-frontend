@@ -51,16 +51,21 @@ export default class Movie extends Component {
 
   //Save movie to watchlist
   saveToWatchlist = () => {
-    let model = {
-      user: localStorage.getItem('id'),
-      //user: this.state.movie.id,
-      title: this.state.movie.title,
+    if (localStorage.getItem('id') !== null) {
+      let model = {
+        user: localStorage.getItem('id'),
+        image: this.state.movie.poster_path,
+        title: this.state.movie.title,
+      }
+      axios.post(`${process.env.REACT_APP_API_PORT}/watchlist/add`, {
+        user: localStorage.getItem('id'),
+        title: this.state.movie.title,
+        image: this.state.movie.poster_path,
+      })
+      console.log(model)
+    } else {
+      alert('You need to login to be able to add movies to your watchlist')
     }
-    axios.post(`${process.env.REACT_APP_API_PORT}/watchlist/add`, {
-      user: localStorage.getItem('id'),
-      title: this.state.movie.title
-    })
-    console.log(model)
   }
 
   render() {
@@ -136,10 +141,7 @@ export default class Movie extends Component {
               <p>Imdb Rating: {this.state.movie.vote_average}</p>
               <p>Popularity: {this.state.movie.popularity}</p>
               <p>Runtime: {this.state.movie.runtime} min</p>
-              <Link to={{ pathname: "/profile/" + this.state.movie.id }}>
-                <button onClick={this.saveToWatchlist} className="btn waves-effect waves-light" type="submit" name="action">Add to watchlist</button>
-              </Link>
-
+              <button onClick={this.saveToWatchlist} className="btn waves-effect waves-light" type="submit" name="action">Add to watchlist</button>
             </div>
             <div className="movieInfo">
               <h5>Actors: </h5>

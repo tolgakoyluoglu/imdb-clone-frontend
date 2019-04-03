@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import '../profile/Profile.css'
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 export default class Profile extends Component {
     state = {
@@ -13,11 +14,15 @@ export default class Profile extends Component {
     componentDidMount() {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-        const user = localStorage.getItem('id')
         this.setState({
             email: decoded.email,
             name: decoded.name,
         })
+        this.showMovie()
+    }
+    //Show movies in watchlist
+    showMovie = () => {
+        const user = localStorage.getItem('id')
         axios.post(`${process.env.REACT_APP_API_PORT}/watchlist/show`, {
             user: user
         })
@@ -27,11 +32,12 @@ export default class Profile extends Component {
                 })
             })
     }
-
     //Delete movie from watchlist
     deleteMovie = (id) => {
         axios.delete(`${process.env.REACT_APP_API_PORT}/watchlist/delete/${id}`)
             .then(res => {
+                console.log(res)
+                this.showMovie()
             })
     }
 
@@ -39,10 +45,31 @@ export default class Profile extends Component {
         let watchlist = this.state.watchlist
         let movieList = watchlist.map(movie => {
             return (
-                <div key={movie._id}>
-                    <p>{movie.title}<i onClick={() => this.deleteMovie(movie._id)} className="small material-icons">clear</i></p>
+                // <div className="movieContainer">
+                //     <div className="icon" key={movie._id}>
+                //     </div>
+                //     <div className="imageContainer">
+                //         <div className="card">
+                //             <div className="card-image">
+                //                 <img src={"http://image.tmdb.org/t/p/w185" + movie.image} alt="Not Found"></img>
+                //             </div>
+                //         </div>
+                //     </div>
+                // </div>
 
-                </div>
+                <div className="col s12 m6" key={movie.id}>
+                    <Link to={{ pathname: "/movie/" + movie.id }}>
+                        <div className="card">
+                            <div className="card-image">
+                                <img src={"http://image.tmdb.org/t/p/w185" + movie.image} alt="Not Found"></img>
+                            </div>
+                        </div>
+                    </Link>
+                    <h6>{movie.title}</h6>
+                    <i onClick={() => this.deleteMovie(movie._id)} className="small material-icons">clear</i>
+                </div >
+
+
             )
         })
         return (
@@ -52,7 +79,10 @@ export default class Profile extends Component {
                 </div>
                 <div className="watchList">
                     <h5>Watchlist: </h5>
-                    {movieList}
+                    <div className="watchlistContainer">
+
+                        {movieList}
+                    </div>
                 </div>
             </div>
         )

@@ -109,7 +109,7 @@ export default class Start extends Component {
 
         showUpcoming = upcomingFive.map(upcoming => {
             return (
-                <div classame="col s12 m6" key={upcoming.id}>
+                <div className="col s12 m6" key={upcoming.id}>
                     <Link to={{ pathname: "/movie/" + upcoming.id }}>
                         <div className="card">
                             <div className="card-image">

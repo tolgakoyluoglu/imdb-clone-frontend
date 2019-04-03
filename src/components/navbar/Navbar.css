@@ -1,20 +1,47 @@
-.navbar {
-    background-color: #f4f4f4;
+ header {
+    background-color: #f3f3f3;
 }
 
-nav ul a {
-    color: #333;
-}
-
-.navbar a {
+.navWrapper a {
     color: #333
 }
 
-nav .nav-wrapper {
+.navWrapper {
     width: 80%;
     margin: auto;
+    display: flex;
+    justify-content: space-between;
 }
 
-nav .brand-logo {
-    font-size: 1.5rem;
+
+ul#navMenu {
+    display: flex;
+}
+
+ul {
+    display: flex;
+    color: #333
+}
+
+li {
+    padding: 5px;
+}
+
+.logo {
+    padding-top:15px;
+    font-size: 19px;
+    color: #333;
+}
+
+@media only screen and (max-width : 500px) {
+    .logo {
+        font-size: 15px;
+        padding-top: 17px;
+    }
+    li {
+        font-size: 13px;
+    }
+    .navWrapper {
+        width: 90%;
+    }
 }

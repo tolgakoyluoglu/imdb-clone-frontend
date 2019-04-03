@@ -43,17 +43,15 @@ class Navbar extends Component {
         )
         return (
             <header>
-                <nav className="navbar">
-                    <div className="nav-wrapper">
-                        <a href="/" className="brand-logo">IMDB Clone</a>
-                        <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li><Link to="/">Home</Link> </li>
-                            <li><Link to="/movies">Movies</Link> </li>
-                            <li>{localStorage.usertoken ? loggedIn : notLoggedIn}</li>
+                <div className="navWrapper">
+                    <a href="/" className="logo">IMDB Clone</a>
+                    <ul id="navMenu" className="navMenu">
+                        <li><Link to="/">Home</Link> </li>
+                        <li><Link to="/movies">Movies</Link> </li>
+                        {localStorage.usertoken ? loggedIn : notLoggedIn}
 
-                        </ul>
-                    </div>
-                </nav>
+                    </ul>
+                </div>
             </header>
         )
     }

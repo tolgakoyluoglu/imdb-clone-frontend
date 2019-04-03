@@ -62,3 +62,42 @@
       transform: scale(1.0);
     }
   }  
+
+  @media only screen and (max-width : 500px) {
+        .bannertext {
+            padding-top: 200px;
+        }
+        .text p {
+            font-size: 13px;
+        }
+        .text h5 {
+            font-size: 17px;
+        }
+        .text {
+            width: 100%;
+        }
+        .banner {
+            height: 400px;
+        }
+        .latest {
+            display: block;
+        }
+        .rated {
+            display: block;
+        }
+        .col {
+            width: 93%;
+        }
+        .featured h4 {
+            font-size: 25px;
+        }
+        .featured {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    }
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+        .bannertext {
+            padding-top: 300px;
+        }
+        }

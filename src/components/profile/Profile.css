@@ -22,8 +22,28 @@ label {
     text-align: center;
 }
 
-.watchList {
+.watchlistContainer {
     width: 80%;
     margin: auto;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.watchList {
     text-align: center;
+}
+
+.small {
+    cursor: pointer;
+    color: red;
+}
+.icon p {
+    margin-top: 0px;
+    font-size: 18px;
+}
+.icon {
+    display: flex;
+    justify-content: center;
+    width: 18%;
 }

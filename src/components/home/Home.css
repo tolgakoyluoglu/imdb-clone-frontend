@@ -61,3 +61,34 @@ input[type=text]:focus{
     margin: auto;
     text-align: center;
 }
+@media only screen and (max-width : 500px) { 
+    .homeSearch {
+        width: 75%;
+        justify-content: center;
+        display: flex;
+    }
+    input[type=text]:not(.browser-default) {
+        width: 62%;
+        font-size: 16px;
+        margin: auto;
+    }
+    form {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .btn {
+        height: 42px;
+    }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .homeContainer {
+        justify-content: center;
+    }
+    .homeSearch {
+        width: 67%;
+        justify-content: center;
+    }
+    .btn {
+        height: 32px;
+    }
+    }
