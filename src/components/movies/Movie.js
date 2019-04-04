@@ -59,6 +59,7 @@ export default class Movie extends Component {
       }
       axios.post(`${process.env.REACT_APP_API_PORT}/watchlist/add`, {
         user: localStorage.getItem('id'),
+        movieId: this.state.movie.id,
         title: this.state.movie.title,
         image: this.state.movie.poster_path,
       })

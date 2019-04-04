@@ -45,20 +45,8 @@ export default class Profile extends Component {
         let watchlist = this.state.watchlist
         let movieList = watchlist.map(movie => {
             return (
-                // <div className="movieContainer">
-                //     <div className="icon" key={movie._id}>
-                //     </div>
-                //     <div className="imageContainer">
-                //         <div className="card">
-                //             <div className="card-image">
-                //                 <img src={"http://image.tmdb.org/t/p/w185" + movie.image} alt="Not Found"></img>
-                //             </div>
-                //         </div>
-                //     </div>
-                // </div>
-
-                <div className="col s12 m6" key={movie.id}>
-                    <Link to={{ pathname: "/movie/" + movie.id }}>
+                <div className="col s12 m6" key={movie._id}>
+                    <Link to={{ pathname: "/movie/" + movie.movieId }}>
                         <div className="card">
                             <div className="card-image">
                                 <img src={"http://image.tmdb.org/t/p/w185" + movie.image} alt="Not Found"></img>
