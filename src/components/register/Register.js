@@ -5,7 +5,9 @@ export default class Register extends Component {
     state = {
         name: '',
         email: '',
-        password: ''
+        password: '',
+        error: '',
+        submitted: false,
     }
 
     onChange = this.onChange.bind(this)
@@ -18,6 +20,7 @@ export default class Register extends Component {
     onSubmit(e) {
         e.preventDefault()
 
+        this.setState({ submitted: true })
         const newUser = {
             name: this.state.name,
             email: this.state.email,
@@ -28,7 +31,7 @@ export default class Register extends Component {
                 if (res) {
                     this.props.history.push('/profile')
                 } else {
-                    alert('Email already exist')
+                    this.setState({ error: 'Email exist' })
                 }
             })
         } else {
@@ -45,6 +48,11 @@ export default class Register extends Component {
                         <input type="email" name="email" placeholder="Email.." required value={this.state.email} onChange={this.onChange}></input>
                         <input type="password" name="password" placeholder="Password.." required value={this.state.password} onChange={this.onChange}></input>
                         <button className="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                        <div className={'form-group' + (this.state.error !== '' ? ' has-error' : '')}>
+                            {this.state.error !== '' &&
+                                <div className="help-block">Email already exist</div>
+                            }
+                        </div>
                     </form>
                 </div>
             </div>

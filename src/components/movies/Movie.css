@@ -18,12 +18,16 @@
 
 .movieInfo {
     font-size: 15px;
-    padding-left: 50px;
+    padding-left: 0px;
     padding-top: 35px;
 }
-
+.actorContainer li {
+    padding: 10px;
+}
 .actorContainer {
+    text-align: left;
     display: flex;
+    height: 50px;
 }
 
 .videoContainer {

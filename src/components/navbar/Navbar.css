@@ -23,12 +23,12 @@ ul {
     color: #333
 }
 
-li {
-    padding: 5px;
+.navMenu li {
+    margin: 15px;
 }
 
 .logo {
-    padding-top:15px;
+    margin-top:25px;
     font-size: 19px;
     color: #333;
 }
@@ -36,10 +36,11 @@ li {
 @media only screen and (max-width : 500px) {
     .logo {
         font-size: 15px;
-        padding-top: 17px;
+        margin-top: 17px;
     }
     li {
         font-size: 13px;
+        margin: 5px;
     }
     .navWrapper {
         width: 90%;

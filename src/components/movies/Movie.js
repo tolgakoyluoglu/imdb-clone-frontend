@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import '../movies/Movie.css'
-import { Link } from "react-router-dom";
 
 export default class Movie extends Component {
   state = {
@@ -11,6 +10,7 @@ export default class Movie extends Component {
     video: [],
     isLoading: true,
     genre: [],
+    error: false,
   };
   //Get movie, credit and video from API
   componentDidMount = () => {
@@ -64,7 +64,7 @@ export default class Movie extends Component {
       })
       console.log(model)
     } else {
-      alert('You need to login to be able to add movies to your watchlist')
+      this.setState({ error: true })
     }
   }
 
@@ -142,6 +142,11 @@ export default class Movie extends Component {
               <p>Popularity: {this.state.movie.popularity}</p>
               <p>Runtime: {this.state.movie.runtime} min</p>
               <button onClick={this.saveToWatchlist} className="btn waves-effect waves-light" type="submit" name="action">Add to watchlist</button>
+              <div className={'form-group' + (this.state.error === true ? ' has-error' : '')}>
+                {this.state.error === true &&
+                  <div className="help-block"><h6>Please login to save this movie</h6></div>
+                }
+              </div>
             </div>
             <div className="movieInfo">
               <h5>Actors: </h5>

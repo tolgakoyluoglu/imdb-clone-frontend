@@ -6,6 +6,8 @@ export default class Login extends Component {
     state = {
         email: '',
         password: '',
+        submitted: false,
+        error: ''
     }
 
     onChange = this.onChange.bind(this)
@@ -17,7 +19,11 @@ export default class Login extends Component {
 
     onSubmit(e) {
         e.preventDefault()
+        this.setState({ submitted: true })
 
+        if (!(this.state.email && this.state.password)) {
+            return;
+        }
         const user = {
             email: this.state.email,
             password: this.state.password
@@ -28,7 +34,7 @@ export default class Login extends Component {
             if (data) {
                 this.props.history.push('/profile')
             } else {
-                console.log('error on login')
+                this.setState({ error: 'Invalid credentials' })
             }
         })
     }
@@ -37,10 +43,25 @@ export default class Login extends Component {
             <div className="sticky">
                 <div className="login">
                     <form noValidate onSubmit={this.onSubmit} required>
-                        <h5>Login</h5>
-                        <input type="email" name="email" placeholder="Email.." value={this.state.email} onChange={this.onChange}></input>
-                        <input type="password" name="password" placeholder="Password.." value={this.state.password} onChange={this.onChange}></input>
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                        <div className={'form-group' + (this.state.submitted && !this.state.email ? ' has-error' : '')}>
+                            <h5>Login</h5>
+                            <input type="email" name="email" placeholder="Email.." value={this.state.email} onChange={this.onChange}></input>
+                            {this.state.submitted && !this.state.email &&
+                                <div className="help-block">Email is required</div>
+                            }
+                            <div className={'form-group' + (this.state.submitted && !this.state.password ? ' has-error' : '')}>
+                                <input type="password" name="password" placeholder="Password.." value={this.state.password} onChange={this.onChange}></input>
+                                {this.state.submitted && !this.state.password &&
+                                    <div className="help-block">Password is required</div>
+                                }
+                                <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                                <div className={'form-group' + (this.state.error !== '' ? ' has-error' : '')}>
+                                    {this.state.error !== '' &&
+                                        <div className="help-block">Invalid email or password</div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
